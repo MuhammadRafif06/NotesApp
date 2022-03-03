@@ -1,7 +1,20 @@
 <resources>
-    <string name="app_name">NotesApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">Notes App</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="content_img_no_notes">Image show up when no notes found</string>
-    <string name="content_fab_add_note">FAB.add.note</string>
+    <string name="content_fab_add_note">FAB add note</string>
+    <string name="txt_title">Title</string>
+    <string name="txt_priority">Priority</string>
+    <string name="txt_date">Date</string>
+    <string name="txt_description">Description</string>
+    <string name="txt_add">Add</string>
+    <string name="txt_detail">Detail</string>
+    <string name="txt_update">Update</string>
+    <string name="content_fab_add_a_note">FAB add note</string>
+    <string name="content_image_no_data">Image show up when no notes found</string>
+    <string name="txt_search">Search</string>
+    <string name="txt_sort">sort</string>
+    <string name="txt_priority_high">Priority High</string>
+    <string name="txt_low_priority">Low Priority</string>
+    <string name="txt_delete_all">Delete All</string>
 </resources>
