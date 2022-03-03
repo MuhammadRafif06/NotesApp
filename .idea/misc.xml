@@ -12,6 +12,7 @@
         <entry key="..\:/Users/radif/AndroidStudioProjects/NotesApp/app/src/main/res/drawable/ic_edit.xml" value="0.1" />
         <entry key="..\:/Users/radif/AndroidStudioProjects/NotesApp/app/src/main/res/drawable/ic_left_arrow.xml" value="0.117" />
         <entry key="..\:/Users/radif/AndroidStudioProjects/NotesApp/app/src/main/res/drawable/ic_logo.xml" value="0.1" />
+        <entry key="..\:/Users/radif/AndroidStudioProjects/NotesApp/app/src/main/res/drawable/ic_search.xml" value="0.125" />
         <entry key="..\:/Users/radif/AndroidStudioProjects/NotesApp/app/src/main/res/drawable/ic_sort.xml" value="0.117" />
         <entry key="..\:/Users/radif/AndroidStudioProjects/NotesApp/app/src/main/res/layout/activity_main.xml" value="0.22291666666666668" />
         <entry key="..\:/Users/radif/AndroidStudioProjects/NotesApp/app/src/main/res/layout/bg_custom_input.xml" value="0.22291666666666668" />
@@ -22,6 +23,7 @@
         <entry key="..\:/Users/radif/AndroidStudioProjects/NotesApp/app/src/main/res/layout/layout_menu_save.xml" value="0.22291666666666668" />
         <entry key="..\:/Users/radif/AndroidStudioProjects/NotesApp/app/src/main/res/layout/row_item_notes.xml" value="0.22291666666666668" />
         <entry key="..\:/Users/radif/AndroidStudioProjects/NotesApp/app/src/main/res/menu/menu_home.xml" value="0.22291666666666668" />
+        <entry key="..\:/Users/radif/AndroidStudioProjects/NotesApp/app/src/main/res/menu/menu_save.xml" value="0.22291666666666668" />
       </map>
     </option>
   </component>
