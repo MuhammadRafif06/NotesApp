@@ -1,4 +1,4 @@
-package com.rafif.notesapp.data.local
+package com.rafif.notesapp.data.local.entity
 
 enum class Priority {
     HIGH,

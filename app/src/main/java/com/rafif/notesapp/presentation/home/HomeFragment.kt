@@ -1,12 +1,10 @@
 package com.rafif.notesapp.presentation.home
 
+import ExtensionFunctions.setActionBar
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
-import com.rafif.notesapp.MainActivity
 import com.rafif.notesapp.R
 import com.rafif.notesapp.databinding.FragmentHomeBinding
 
@@ -24,23 +22,25 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
         setHasOptionsMenu(true)
-        val navController = findNavController()
-        val appBarConfiguration = AppBarConfiguration(navController.graph)
-        binding.toolbarHome.apply {
-            setupWithNavController(navController, appBarConfiguration)
-            (requireActivity() as MainActivity).setSupportActionBar(this)
-        }
+
+        binding.toolbarHome.setActionBar(requireActivity())
 
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_addFragment)
+        }
+        binding.btnNavDetail.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_detailFragment)
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_home, menu)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

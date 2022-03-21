@@ -18,4 +18,7 @@
     <string name="txt_low_priority">Low Priority</string>
     <string name="txt_delete_all">Delete All</string>
     <string name="txt_save">save</string>
+    <string name="txt_edit">Edit</string>
+    <string name="txt_delete">Delete</string>
+    <string name="txt_go_to_detail_fragment">Go To Detail Fragment</string>
 </resources>
