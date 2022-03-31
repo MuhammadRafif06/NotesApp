@@ -1,11 +1,12 @@
 package com.rafif.notesapp.data.local.room
 
-import com.rafif.notesapp.data.local.entity.Notes
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import com.rafif.notesapp.data.local.entity.Notes
+
 
 @Dao
 interface NotesDao {
@@ -16,7 +17,7 @@ interface NotesDao {
     fun getAllNotes() : LiveData<List<Notes>>
 
     @Query("SELECT * FROM tb_notes WHERE title LIKE :query")
-    fun searchNoteByQuery(query: String): LiveData<List<Notes>>
+    fun searchNotesByQuery(query: String) : LiveData<List<Notes>>
 
     @Query("SELECT * FROM tb_notes ORDER BY CASE WHEN priority LIKE 'H%' THEN 1 WHEN priority LIKE 'M%' THEN 2 WHEN priority LIKE 'L%' THEN 3 END")
     fun sortByHighPriority() : LiveData<List<Notes>>
@@ -27,4 +28,6 @@ interface NotesDao {
     @Query("DELETE FROM tb_notes")
     suspend fun deleteAllData()
 
+    @Delete
+    suspend fun deleteNote(notes: Notes)
 }

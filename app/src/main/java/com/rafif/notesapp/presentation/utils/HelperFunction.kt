@@ -8,7 +8,6 @@ import androidx.core.content.ContextCompat
 import com.rafif.notesapp.R
 
 object HelperFunctions {
-
     fun setPriorityColor(context: Context, cardView: CardView) : AdapterView.OnItemSelectedListener {
 
         val listener = object : AdapterView.OnItemSelectedListener {

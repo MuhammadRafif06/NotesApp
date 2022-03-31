@@ -2,12 +2,9 @@ package com.rafif.notesapp.presentation.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.rafif.notesapp.R
 import com.rafif.notesapp.data.local.entity.Notes
-import com.rafif.notesapp.data.local.entity.Priority
 import com.rafif.notesapp.databinding.RowItemNotesBinding
 
 class HomeAdapter : RecyclerView.Adapter<HomeAdapter.MyViewHolder>() {
@@ -26,24 +23,8 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.MyViewHolder>() {
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = listNotes?.get(position)
         holder.binding.apply {
-            tvTitle.text = data?.title
-            tvDescription.text = data?.desc
-            tvDate.text = data.date
-
-            when (data?.priority) {
-                Priority.HIGH -> priorityIndicator.setCardBackgroundColor(
-                    ContextCompat.getColor(priorityIndicator.context, R.color.pink)
-                )
-                Priority.MEDIUM -> priorityIndicator.setCardBackgroundColor(
-                    ContextCompat.getColor(priorityIndicator.context, R.color.yellow)
-                )
-                Priority.LOW -> priorityIndicator.setCardBackgroundColor(
-                    ContextCompat.getColor(priorityIndicator.context, R.color.green)
-                )
-                else -> priorityIndicator.setCardBackgroundColor(
-                    ContextCompat.getColor(priorityIndicator.context, R.color.pink)
-                )
-            }
+            mNotes = data
+            executePendingBindings() // buat ngasih tau kalo kita pakai data binding
         }
     }
 

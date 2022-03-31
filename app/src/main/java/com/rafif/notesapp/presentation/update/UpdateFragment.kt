@@ -1,20 +1,22 @@
 package com.rafif.notesapp.presentation.update
 
-import ExtensionFunctions.setActionBar
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.rafif.notesapp.R
 import com.rafif.notesapp.databinding.FragmentUpdateBinding
 import com.rafif.notesapp.presentation.utils.HelperFunctions.setPriorityColor
+import com.rafif.notesapp.utils.ExtensionFunctions.setActionBar
 
 class UpdateFragment : Fragment() {
 
     private var _binding: FragmentUpdateBinding? = null
     private val binding get() = _binding as FragmentUpdateBinding
+    private val args by navArgs<UpdateFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +30,7 @@ class UpdateFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         setHasOptionsMenu(true)
+        binding.updateArgs = args
 
         binding.apply {
             binding.toolbarUpdate.setActionBar(requireActivity())

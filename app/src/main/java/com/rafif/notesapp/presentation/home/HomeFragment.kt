@@ -1,7 +1,5 @@
 package com.rafif.notesapp.presentation.home
 
-
-import ExtensionFunctions.setActionBar
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
@@ -10,16 +8,17 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.rafif.notesapp.R
 import com.rafif.notesapp.data.local.entity.Notes
 import com.rafif.notesapp.databinding.FragmentHomeBinding
 import com.rafif.notesapp.presentation.NotesViewModel
-import com.rafif.notesapp.presentation.home.HomeAdapter
-
+import com.rafif.notesapp.utils.ExtensionFunctions.setActionBar
 
 class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: com.rafif.notesapp.databinding.FragmentHomeBinding? = null
     private val binding get() = _binding as FragmentHomeBinding
 
     private val homeViewModel: NotesViewModel by viewModels()
@@ -31,7 +30,7 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(layoutInflater)
         return binding.root
@@ -60,6 +59,7 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
             homeViewModel.getAllNotes().observe(viewLifecycleOwner) {
                 checkDataIsEmpty(it)
                 homeAdapter.setData(it)
+                _currentData = it
             }
             adapter = homeAdapter
             layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
@@ -109,11 +109,11 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
+        when (item.itemId){
             R.id.menu_priority_high ->  homeViewModel.sortByHighPriority.observe(this){
                 homeAdapter.setData(it)
             }
-            R.id.menu_priority_low -> homeViewModel.sortByLowPriority.observe(this) {
+            R.id.menu_priority_low -> homeViewModel.sortByLowPriority.observe(this){
                 homeAdapter.setData(it)
             }
             R.id.menu_delete -> confirmDeleteAllData()
@@ -124,16 +124,37 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun confirmDeleteAllData() {
         AlertDialog.Builder(context)
             .setTitle("Delete Note?")
-            .setMessage("Are You Sure Want To clear this current data?")
+            .setMessage("Are You Sure Want To Clear All Of This Data")
             .setPositiveButton("Yes") { _, _ ->
                 homeViewModel.deleteAllData()
-                Toast.makeText(context, "Successfully Delete data", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Successfully Deleted Data", Toast.LENGTH_SHORT).show()
             }
             .setNegativeButton("No") { _, _ -> }
             .setNeutralButton("Cancel") { _, _ -> }
-
+            .show()
     }
 
+    private fun swipeToDelete(recyclerView: RecyclerView) {
+        val swipeToDelete = object : ItemTouchHelper.SimpleCallback(
+            0,
+            ItemTouchHelper.LEFT
+        ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val deletedItem = homeAdapter.listNotes[viewHolder.adapterPosition]
+                homeViewModel.deleteNote(deletedItem)
+            }
+        }
+        val itemTouchHelper = ItemTouchHelper(swipeToDelete)
+        itemTouchHelper.attachToRecyclerView(recyclerView)
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

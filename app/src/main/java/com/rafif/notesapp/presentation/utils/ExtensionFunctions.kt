@@ -1,5 +1,6 @@
+package com.rafif.notesapp.utils
+
 import androidx.fragment.app.FragmentActivity
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
@@ -26,5 +27,6 @@ object ExtensionFunctions {
         }
 
     }
+
 
 }
